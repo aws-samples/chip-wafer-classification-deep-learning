@@ -764,7 +764,7 @@ Resources:
           groupadd --system ggc_group
 
           mkdir /opt/images
-          apt install awscli
+          apt install awscli -y
           aws s3 sync s3://${DataBucketName}/data/test /opt/images/test
           chmod -R ogu+r /opt/images
 
