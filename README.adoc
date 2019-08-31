@@ -1,4 +1,10 @@
-= Chip Wafer Analysis
+= Semiconductor Wafer Bin Map Classification using AWS Machine Learning
+
+image::_images/wafer_ai_better_wafer.png[Better Yields with AWS ML]
+
+This workshop references several publicly available methods and sources, and extends those by leveraging native AWS Services to increase semiconductor wafter manufacturing yields.
+
+Chip Wafer Analysis
 
 This project uses AWS machine learning and IoT tools to develop a deep learning defect classification model and use it for real-time defect detection on a device.
 
@@ -31,7 +37,7 @@ The data set we use is:
 
 == Architecture
 
-image::architecture/Architecture.png[Architecture]
+image::_images/Architecture.png[Architecture]
 
 === IoT 
 
