@@ -1,7 +1,6 @@
 = Semiconductor Wafer Bin Map Classification using AWS Machine Learning
 
-image::_images/wafer_ai_better_wafer.png[Better Yields with AWS ML, 400, align="center", float="center"]
-
+image::_images/wafer_ai_better_wafer.png[Better Yields with AWS ML, 600]
 
 This workshop launches an AWS machine learning and IoT environment that enables customers to develop a deep learning wafer bin map classification model, and use that model for real-time detection on a wafer defect inspection device.
 
