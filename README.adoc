@@ -115,18 +115,30 @@ As mentioned above, the source data is from the WM-811K data set (<<MIR_Lab>> an
 
 == Setup
 
-=== Clone this repo
+=== Clone
 
 If you have not done so, clone this repo.
 
 === Create an S3 bucket
 
-We will need an S3 bucket to hold the CloudFormation templates, you can either use an existing bucket (e.g. the one you used to store the data) or can create a new one
+We will need an S3 bucket to hold the CloudFormation templates, you can either use an existing bucket (e.g. the one you used to store the data) or can create a new one.
 
 Here is the command to create a new one:
 
 ....
 aws s3 mb s3://<template bucket>
+....
+
+=== Create the stack
+
+The CloudFormation stack that we create is a master or root stack that has several nested stacks, here are the files names for each:
+....
+master.yaml
+  ├── app.yaml
+  ├── iot.yaml
+  ├── network.yaml
+  ├── persistence.yaml
+  └── pipeline.yaml
 ....
 
 Now create the stack:
