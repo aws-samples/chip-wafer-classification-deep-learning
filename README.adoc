@@ -6,6 +6,11 @@ This workshop launches an AWS machine learning and IoT environment that enables 
 
 We have many references to publicly available methods and sources, and we extend those by leveraging native AWS Machine Learning Services and IoT tools.
 
+
+== License Summary
+
+This sample code is made available under the MIT-0 license. See the LICENSE file.
+
 ----
 Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: MIT-0
@@ -23,15 +28,19 @@ image::_images/Nine_wafer_Classifications.png[Nine Wafer Classfications]
 
 To ensure the highest possible yields, the foundry will use these classifications to find defect patterns and make adjustments or repairs to semiconductor manufacturing equipment.
 
-== License Summary
+This workshop has two parts:
 
-This sample code is made available under the MIT-0 license. See the LICENSE file.
+1. Use existing wafer data to build an ML Deep Learning model to classify and validate the model is working correctly
+2. Exetend the environment using IoT to do real-time detection.
+
 
 == Data set attribution
 
-The data set we use is:
+The wafer data is the WM-811k data set which consists of 811,457 wafer maps, and is real data from a actual foundry. This data set available for public download in two places:
 
-[Qingyi](https://www.kaggle.com/qingyi). (February 2018). WM-811K wafer map, Version 1. Retrieved January 2018 from https://www.kaggle.com/qingyi/wm811k-wafer-map/downloads/wm811k-wafer-map.zip/1.
+- <<Qingyi>>
+
+- <<MIR_Lab>>
 
 == Architecture
 
@@ -254,7 +263,9 @@ Also note that the Pi needs a 2.5 power source when you run inference.  If you u
 
 - [[[two,2]]] C. H. Jin, H. J. Na, M. Piao, G. Pok and K. H. Ryu, "A Novel DBSCAN-Based Defect Pattern Detection and Classification Framework for Wafer Bin Map," in IEEE Transactions on Semiconductor Manufacturing, vol. 32, no. 3, pp. 286-292, Aug. 2019. doi: 10.1109/TSM.2019.2916835 URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8713928&isnumber=8765845
 
+- [[[Qingyi]]] https://www.kaggle.com/qingyi (February 2018). WM-811K wafer map, Version 1. Retrieved January 2018 from https://www.kaggle.com/qingyi/wm811k-wafer-map/downloads/wm811k-wafer-map.zip/1.
 
+- [[[MIR_Lab]]]http://mirlab.org/dataSet/public/
 
 
 
