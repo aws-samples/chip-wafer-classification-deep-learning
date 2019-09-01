@@ -141,6 +141,8 @@ master.yaml
   └── pipeline.yaml
 ....
 
+Before you can create the CloudFormation stack, you will need to have the necessary CloudFormation parameters. Before you run the create.sh command, you should have these parameters defined:
+
 |===
 | *Parameter* | *Variable Name* | *Description*
 | *Security Access CIDR*
@@ -165,7 +167,7 @@ master.yaml
 
 |===
 
-Now create the stack:
+Now run the `create.sh` command to launch the master stack and nested stacks:
 
 ----
 ./scripts/create.sh <template bucket> <template prefix> <stack name> <region>
