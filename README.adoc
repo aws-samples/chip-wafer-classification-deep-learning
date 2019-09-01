@@ -131,7 +131,7 @@ aws s3 mb s3://<template bucket>
 
 === Create the stack
 
-The CloudFormation stack that we create is a master or root stack that has several nested stacks, here are the files names for each:
+The CloudFormation stack that we create is a master or root stack that has several nested stacks, here are the file names for each:
 ....
 master.yaml
   ├── app.yaml
@@ -140,6 +140,30 @@ master.yaml
   ├── persistence.yaml
   └── pipeline.yaml
 ....
+
+|===
+| *Parameter* | *Variable Name* | *Description*
+| *Security Access CIDR*
+| SecurityAccessCIDR
+| CIDR block to limit inbound access for only SSH. Default: '0.0.0.0/0'
+
+| *Project Tag*
+| ProjectTag
+| Tag to apply to created resources for visibility. Default: ChipWaferAnalysis
+
+| *Template Bucket Name*
+| Template Bucket Name
+| Name for the S3 bucket that contains the nested templates.
+
+| *Template Bucket Prefix*
+| TemplateBucketPrefix
+| Prefix for the path to the nested templates in the S3 bucket.
+
+| *EC2 Key Name*
+| myKeyPair
+| Amazon EC2 Key Pair for accessing Greengrass Core instance
+
+|===
 
 Now create the stack:
 
