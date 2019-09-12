@@ -96,7 +96,7 @@ As mentioned above, the source data is from the WM-811K data set (<<MIR_Lab>> an
 
 image::_images/Ref_Architecture.png[Reference Architecture, 640]
 
-image::_images/Ref_Architecture_descriptions.png[Reference Architecture Descriptions, 480]
+image::_images/Ref_Architecture_descriptions.png[Reference Architecture Descriptions, 640]
 
 
 === IoT 
