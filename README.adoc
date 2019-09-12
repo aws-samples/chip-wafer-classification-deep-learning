@@ -7,6 +7,14 @@ This workshop launches an AWS machine learning and IoT environment that enables 
 
 We reference several publicly available methods and sources, and we extend those by leveraging native AWS Machine Learning Services and IoT tools.
 
+== Prerequisites
+
+The following is required to run this workshop:
+
+* An AWS account with administrative level access
+* AWS CLI is setup, see the https://aws.amazon.com/cli/[AWS CLI Docs] for more info
+* An Amazon EC2 key pair
+* RaspberryPi, optional for doing local inference
 
 == License Summary
 
@@ -36,6 +44,10 @@ It is assumed that you have basic git knowledge and have an AWS Account. This wo
 1. Use existing wafer data to build an ML Deep Learning model to classify and validate the model is working correctly.
 2. Extend the previously launched ML environment using IoT to enable real-time defect detection.
 
+=== Clone this repo
+
+If you have not done so, clone this repo to your local machine (`git clone <repo-name>`).
+
 === AWS CLI
 
 There are several steps that use the AWS CLI. If you have not installed and configured the AWS CLI, please do that now. Here is the documentation to that:  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html[Installing the AWS CLI]
@@ -48,11 +60,21 @@ aws s3 ls
 
 === S3 Bucket
 
-You will need an S3 bucket for both the data set, and the CloudFormation templates. You can use an existing bucket or you can create a new bucket. Here is an example command to create a bucket:
+You will need an S3 bucket for both the data set and the CloudFormation templates. You can use an existing bucket or you can create a new bucket. Here is an example command to create a bucket:
 
 ....
 aws s3 mb s3://<myname>-wafer-workshop
 ....
+
+=== Copy CloudFormation templates to an s3 bucket
+
+The workshop uses an s3 bucket to store the CloudFormation templates used to launch the resources. Using the bucket you created above or an existing one, copy the templates to the bucket under a `templates` folder. For example, this assumes you are in the repo you have already cloned:
+
+....
+aws s3 sync cfn/ s3://duff-wafer-workshop/templates/
+....
+
+Make note of both the bucket and the folder, as these will used later to launch the stack(s).
 
 == Data
 
@@ -77,17 +99,7 @@ MATLAB 7.3 MAT-file, Platform: PCWIN64, Created on: Sun Dec 29 20:48:11 2013 HDF
 
 To convert this file we used the `mat73_to_pickle.py` command from the https://github.com/emanuele/convert_matlab73_hdf5[convert_matlab73_hdf5] repo (needs modules `numpy` and `h5py`):
 
-....
-python ./mat73_to_pickle.py WM811K.mat
-....
-
-started at 13:45
-
-We named the resulting file `WM811K.pkl`.
-
-
 === Data placement in to an S3 bucket
-
 
 As mentioned above, the source data is from the WM-811K data set (<<MIR_Lab>> and <<Qingyi>>).  Download this data set and place this data into an S3 bucket organized into `train` and `valid` folders. The notebook `DataPrep.ipynb` documents the data preparation steps.
 
@@ -99,7 +111,7 @@ image::_images/Ref_Architecture.png[Reference Architecture, 800]
 image::_images/Ref_Architecture_descriptions.png[Reference Architecture Descriptions, 640]
 
 
-=== IoT 
+== IoT
 
 Each device (a Raspberry Pi) runs the GreenGrass Core software.  Devices publish two kinds of messages:
 
@@ -160,21 +172,8 @@ The classification table schema is:
 
 == Step-by-Step Guide
 
-=== Clone
 
-If you have not done so, clone this repo.
-
-=== Create an S3 bucket
-
-We will need an S3 bucket to hold the CloudFormation templates, you can either use an existing bucket (e.g. the one you used to store the data) or can create a new one.
-
-Here is the command to create a new one:
-
-....
-aws s3 mb s3://<template bucket>
-....
-
-=== Create the stack
+=== Launch the master stack
 
 The CloudFormation stack that we create is a master or root stack that has several nested stacks, here are the file names for each:
 ....
@@ -186,8 +185,16 @@ master.yaml
   └── pipeline.yaml
 ....
 
-Before you can create the CloudFormation stack, you will need to have the necessary CloudFormation parameters. Before you run the create.sh command, you should have these parameters defined:
+1. Launch the master stack by going to the: **https://console.aws.amazon.com/console[AWS Console] -> CloudFormation -> Create Stack -> Upload a template file -> Choose file**
 
+2. Navigate to this repo that you cloned local to you system, and select **cfn/master.yaml**
+
+3. You should see **Specify stack details**:
++
+image::_images/cfn_1.png[Specify stack details, 680]
++
+Fill in the parameters, here are descriptions of each:
++
 |===
 | *Parameter* | *Variable Name* | *Description*
 | *Security Access CIDR*
@@ -212,11 +219,16 @@ Before you can create the CloudFormation stack, you will need to have the necess
 
 |===
 
-Now run the `create.sh` command to launch the master stack and nested stacks:
+4. After you have entered values for the parameters, click **Next**.
 
-----
-./scripts/create.sh <template bucket> <template prefix> <stack name> <region>
-----
+5. Accept the default values of the **Configure stack options** and **Advanced options** sections and click **Next**. You can optionally set tags if desired.
+
+6. Review the CloudFormation stack settings.
+
+7. Click all checkboxes in the blue **Capabilities** box at the bottom of the page.
++
+image::_images/cfn_2.png[Capabilities, 680]
+
 
 Note the CodeCommit repo output from the stack and check in the code from the `pytorch_code`, `test_code`, `deploy_code`, and `trainer_code` directories.
 
