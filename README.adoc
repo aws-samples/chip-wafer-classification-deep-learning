@@ -86,9 +86,7 @@ The wafer data is the WM-811K data set which consists of 811,457 wafer maps, and
 
 - <<Qingyi>>
 
-=== Data Conversion
-
-This workshop requires that the wafer data be in Python format, specifically we're using a pickle file. If you downloaded the data from the <<Qingyi>> link, the data is already a Python pickle object (.pkl) and you do not need to convert the data from MATLAB to Python.
+=== Data Handling
 
 We downloaded the wafer data from <<MIR_Lab>>, and the resulting unzipped file is a MATLAB 7.3 HDF5 file, as seen with the `head` command:
 
@@ -97,7 +95,7 @@ $ head WM811K.mat
 MATLAB 7.3 MAT-file, Platform: PCWIN64, Created on: Sun Dec 29 20:48:11 2013 HDF5 schema ...
 ....
 
-To convert this file we used the `mat73_to_pickle.py` command from the https://github.com/emanuele/convert_matlab73_hdf5[convert_matlab73_hdf5] repo (needs modules `numpy` and `h5py`):
+We can use the Python module `pymatreader` to read the MATLAB file.
 
 === Data placement in to an S3 bucket
 
