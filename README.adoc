@@ -24,31 +24,80 @@ A wafer bin map shows a visual representation of failed dies across a wafer, and
 .Nine wafer bin map classifications
 [#wafter-classifications]
 [caption="Figure 1: "]
-image::_images/Nine_wafer_Classifications.png[Nine Wafer Classfications]
+image::_images/Nine_wafer_Classifications.png[Nine Wafer Classfications, 640]
 {nbsp}
 
 To ensure the highest possible yields, the foundry will use these classifications to find defect patterns and make adjustments or repairs to semiconductor manufacturing equipment.
 
 == Workshop Overview
 
-This workshop has two parts:
+It is assumed that you have basic git knowledge and have an AWS Account. This workshop has two parts:
 
 1. Use existing wafer data to build an ML Deep Learning model to classify and validate the model is working correctly.
-2. Extend the ML environment initially created using IoT to do real-time detection.
+2. Extend the previously launched ML environment using IoT to enable real-time defect detection.
 
+=== AWS CLI
 
-== Data set attribution
+There are several steps that use the AWS CLI. If you have not installed and configured the AWS CLI, please do that now. Here is the documentation to that:  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html[Installing the AWS CLI]
 
-The wafer data is the WM-811k data set which consists of 811,457 wafer maps, and is real data from a actual foundry. This data set available for public download in two places:
+To verify the AWS CLI is working, run this command and it should return a list of you S3 buckets:
+
+....
+aws s3 ls
+....
+
+=== S3 Bucket
+
+You will need an S3 bucket for both the data set, and the CloudFormation templates. You can use an existing bucket or you can create a new bucket. Here is an example command to create a bucket:
+
+....
+aws s3 mb s3://<myname>-wafer-workshop
+....
+
+== Data
+
+=== Data set attribution
+
+The wafer data is the WM-811K data set which consists of 811,457 wafer maps, and is real data from a actual foundry. This data set available for public download in two places:
 
 - <<MIR_Lab>> Original source.
 
 - <<Qingyi>>
 
+=== Data Conversion
 
-== Architecture
+This workshop requires that the wafer data be in Python format, specifically we're using a pickle file. If you downloaded the data from the <<Qingyi>> link, the data is already a Python pickle object (.pkl) and you do not need to convert the data from MATLAB to Python.
 
-image::_images/Architecture.png[Architecture]
+We downloaded the wafer data from <<MIR_Lab>>, and the resulting unzipped file is a MATLAB 7.3 HDF5 file, as seen with the `head` command:
+
+....
+$ head WM811K.mat
+MATLAB 7.3 MAT-file, Platform: PCWIN64, Created on: Sun Dec 29 20:48:11 2013 HDF5 schema ...
+....
+
+To convert this file we used the `mat73_to_pickle.py` command from the https://github.com/emanuele/convert_matlab73_hdf5[convert_matlab73_hdf5] repo (needs modules `numpy` and `h5py`):
+
+....
+python ./mat73_to_pickle.py WM811K.mat
+....
+
+started at 13:45
+
+We named the resulting file `WM811K.pkl`.
+
+
+=== Data placement in to an S3 bucket
+
+
+As mentioned above, the source data is from the WM-811K data set (<<MIR_Lab>> and <<Qingyi>>).  Download this data set and place this data into an S3 bucket organized into `train` and `valid` folders. The notebook `DataPrep.ipynb` documents the data preparation steps.
+
+
+== Reference Architecture
+
+image::_images/Ref_Architecture.png[Reference Architecture, 640]
+
+image::_images/Ref_Architecture_descriptions.png[Reference Architecture Descriptions, 480]
+
 
 === IoT 
 
@@ -109,11 +158,7 @@ The classification table schema is:
 - prediction
 - probability
 
-== Data
-
-As mentioned above, the source data is from the WM-811K data set (<<MIR_Lab>> and <<Qingyi>>).  Place this data into an S3 bucket organized into `train` and `valid` folders. The notebook `DataPrep.ipynb` documents the data preparation steps.
-
-== Setup
+== Step-by-Step Guide
 
 === Clone
 
