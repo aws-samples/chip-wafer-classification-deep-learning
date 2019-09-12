@@ -27,7 +27,7 @@ SPDX-License-Identifier: MIT-0
 
 == Defect Patterns
 
-A wafer bin map shows a visual representation of failed dies across a wafer, and these have been put in categories or bins. The maps are created with probes and precise testing equipment. Equipment can fail entirely or fall out of tolerances. Both <<one>> and <<two>> discuss how wafer bin maps can be classified in to nine main categories:  Center, Donut, Edge-Loc, Edge-Ring, Loc, Random, Scratch, Near-full and none. __Figure 1__ is a visual representation of each.
+A wafer bin map shows a visual representation of failed dies across a wafer, and these have been put in categories. The maps are created with probes and precise testing equipment. Equipment can fail entirely or fall out of tolerances. Both <<one>> and <<two>> discuss how wafer bin maps can be classified in to nine main categories:  Center, Donut, Edge-Loc, Edge-Ring, Loc, Random, Scratch, Near-full and none. __Figure 1__ is a visual representation of each.
 
 .Nine wafer bin map classifications
 [#wafter-classifications]
