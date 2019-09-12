@@ -204,7 +204,7 @@ Fill in the parameters, here are descriptions of each:
 | Tag to apply to created resources for visibility. Default: ChipWaferAnalysis
 
 | *Template Bucket Name*
-| Template Bucket Name
+| TemplateBucketName
 | Name for the S3 bucket that contains the nested templates.
 
 | *Template Bucket Prefix*
