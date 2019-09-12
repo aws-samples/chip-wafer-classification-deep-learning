@@ -113,7 +113,7 @@ image::_images/Ref_Architecture_descriptions.png[Reference Architecture Descript
 
 == IoT
 
-Each device (a Raspberry Pi) runs the GreenGrass Core software.  Devices publish two kinds of messages:
+Each device (a Raspberry Pi) runs the Greengrass Core software.  Devices publish two kinds of messages:
 
 - Raw images.  These go to the topic `fabwafer/<fabid>/<cameraid>/img/<imgid>`.
 - Classifications.  These go to the topic `fabwafer/<fabid>/<cameraid>/prediction/<imgid>`
@@ -187,7 +187,7 @@ master.yaml
 
 1. Launch the master stack by going to the: **https://console.aws.amazon.com/console[AWS Console] -> CloudFormation -> Create Stack -> Upload a template file -> Choose file**
 
-2. Navigate to this repo that you cloned local to you system, and select **cfn/master.yaml**
+2. Navigate to this repo that you cloned local to your system, and select **cfn/master.yaml**
 
 3. You should see **Specify stack details**:
 +
@@ -225,7 +225,7 @@ Fill in the parameters, here are descriptions of each:
 
 6. Review the CloudFormation stack settings.
 
-7. Click all checkboxes in the blue **Capabilities** box at the bottom of the page.
+7. Click all checkboxes in the blue **Capabilities** box at the bottom of the page, as show here:
 +
 image::_images/cfn_2.png[Capabilities, 680]
 
@@ -266,7 +266,7 @@ git commit -m "First commit.  Trying out the build process."
 git push -u origin master
 ----
 
-Now go into the GreenGrass console and deploy the group.  You'll need to deploy the group if the Lambda function changes.  
+Now go into the Greengrass console and deploy the group.  You'll need to deploy the group if the Lambda function changes.
 
 Next go to the `API Gateway` console, select the proper API, go to the `Resources` section, and select `Deploy API` from the `Actions` menu.  Set the `Deployment stage` to `test`.
 
@@ -291,7 +291,7 @@ aws s3 sync build/ s3://<app bucket>
 
 You can update the stack by passing the `--update` flag.
 
-If you update the GreenGrass elements, reset the deployment on the group.  Then update the stack and redeploy the group.  If you update the Lambda function you must also update the subscription definition.
+If you update the Greengrass elements, reset the deployment on the group.  Then update the stack and redeploy the group.  If you update the Lambda function you must also update the subscription definition.
 
 ----
 ./scripts/create.sh <template bucket> <template prefix> <stack name> <region> --update
@@ -299,7 +299,7 @@ If you update the GreenGrass elements, reset the deployment on the group.  Then 
 
 === Setting up inference on Raspberry Pi
 
-The automated demo right now runs a GreenGrass core device on an EC2 instance.  It calls the SageMaker inference endpoint.  
+The automated demo right now runs a Greengrass core device on an EC2 instance.  It calls the SageMaker inference endpoint.
 
 If you'd rather do inference on a real device, you can configure a Raspberry Pi.
 
@@ -318,7 +318,7 @@ Also note that the Pi needs a 2.5 power source when you run inference.  If you u
 
 == Resources
 
-- https://docs.aws.amazon.com/greengrass/latest/developerguide/ml-dlc-console.html[GreenGrass ML Inference Guide]
+- https://docs.aws.amazon.com/greengrass/latest/developerguide/ml-dlc-console.html[Greengrass ML Inference Guide]
 
 == Improvement list
 
