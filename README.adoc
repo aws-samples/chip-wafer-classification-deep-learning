@@ -71,7 +71,7 @@ aws s3 mb s3://<myname>-wafer-workshop
 The workshop uses an s3 bucket to store the CloudFormation templates used to launch the resources. Using the bucket you created above or an existing one, copy the templates to the bucket under a `templates` folder. For example, this assumes you are in the repo you have already cloned:
 
 ....
-aws s3 sync cfn/ s3://duff-wafer-workshop/templates/
+aws s3 sync cfn/ s3://<myname>-wafer-workshop/templates/
 ....
 
 Make note of both the bucket and the folder, as these will used later to launch the stack(s).
