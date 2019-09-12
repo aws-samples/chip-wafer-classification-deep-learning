@@ -94,7 +94,7 @@ As mentioned above, the source data is from the WM-811K data set (<<MIR_Lab>> an
 
 == Reference Architecture
 
-image::_images/Ref_Architecture.png[Reference Architecture, 640]
+image::_images/Ref_Architecture.png[Reference Architecture, 800]
 
 image::_images/Ref_Architecture_descriptions.png[Reference Architecture Descriptions, 640]
 
