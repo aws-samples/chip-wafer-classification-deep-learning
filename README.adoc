@@ -229,8 +229,11 @@ Fill in the parameters, here are descriptions of each:
 +
 image::_images/cfn_2.png[Capabilities, 680]
 
+8. Note the CodeCommit repos output from the stack, see the **Outputs** tab when the master stack is at __CREATE_COMPLETE__.
 
-Note the CodeCommit repo output from the stack and check in the code from the `pytorch_code`, `test_code`, `deploy_code`, and `trainer_code` directories.
+=== Do a first commit on CodeCommit repos
+
+Check in the code from the `pytorch_code`, `test_code`, `deploy_code`, and `trainer_code` directories.
 
 ----
 cd ..
