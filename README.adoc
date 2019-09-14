@@ -104,13 +104,20 @@ First, create an S3 bucket to hold the CloudFormation templates.
 aws s3 mb s3://<template bucket>
 ----
 
+Review the files `scripts/create.sh` and the CloudFormation templates in the `cfn/` directory. Adjust any CloudFormation variables to suit your preferences.  You will likely want to change at least:
+
+* `SecurityAccessCIDR` - set to the IP ranges that will have access to the jump host and review app
+* `myKeyPair` - This is the SSH key you'll use for access to the jump host.  
+
+Several of the Jupyter notebooks reference S3 bucket names at the top of the notebook; you'll need to adjust these to suit your preference.
+
 Now create the stack:
 
 ----
 ./scripts/create.sh <template bucket> <template prefix> <stack name> <region>
 ----
 
-Note the CodeCommit repo output from the stack and check in the code from the `pytorch_code`, `test_code`, `deploy_code`, and `trainer_code` directories.
+Note the CodeCommit repo output from the stack and check in the code from the `pytorch_code`, `test_code`, `deploy_code`, and `trainer_code` directories.  You need to copy code into this repositories to initialize the CI/CD pipeline.
 
 ----
 cd ..
